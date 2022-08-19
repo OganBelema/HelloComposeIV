@@ -1,9 +1,11 @@
 package com.oganbelema.hellocomposeiv.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.oganbelema.hellocomposeiv.screens.details.DetailsScreen
 import com.oganbelema.hellocomposeiv.screens.home.HomeScreen
 
@@ -16,8 +18,12 @@ fun MovieNavigation() {
             HomeScreen(navController = navController)
         }
 
-        composable(MovieScreens.DetailsScreen.name) {
-            DetailsScreen(navController = navController)
+        composable(MovieScreens.DetailsScreen.name+"/{movie}",
+        arguments = listOf(navArgument(name = "movie"){type = NavType.StringType})) {
+                navBackStackEntry ->
+
+            DetailsScreen(navController = navController,
+                navBackStackEntry.arguments?.getString("movie"))
         }
     }
 }

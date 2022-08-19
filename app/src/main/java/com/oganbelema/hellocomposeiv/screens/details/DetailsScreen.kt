@@ -5,6 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 
 @Composable
-fun DetailsScreen(navController: NavController) {
-    Text(text = "Details screen")
+fun DetailsScreen(navController: NavController, movie: String?) {
+    if (movie != null) {
+        Text(text = movie)
+    }
 }
