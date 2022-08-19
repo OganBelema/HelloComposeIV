@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken
 import java.io.IOException
 
 data class Movie(
+    @SerializedName("imdbID") val id: String,
     @SerializedName("Title") val title: String,
     @SerializedName("Year") val year: String,
     @SerializedName("Genre") val genre: String,

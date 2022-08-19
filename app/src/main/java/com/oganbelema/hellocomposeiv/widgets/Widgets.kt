@@ -44,7 +44,7 @@ fun MovieRow(movie: Movie = getMovies(LocalContext.current)[0],
         .padding(4.dp)
         .fillMaxWidth()
         .clickable {
-            onItemClick(movie.title)
+            onItemClick(movie.id)
         },
         shape = RoundedCornerShape(corner = CornerSize(12.dp)),
         elevation = 6.dp) {
@@ -79,19 +79,34 @@ fun MovieRow(movie: Movie = getMovies(LocalContext.current)[0],
                 
                 AnimatedVisibility(visible = expanded.value) {
 
-                    Column() {
+                    Column {
                         Text(text = buildAnnotatedString {
-                            withStyle(style = SpanStyle(color = Color.Yellow,
+                            withStyle(style = SpanStyle(color = Color.Green,
                             fontSize = 13.sp)) {
                                 append("Plot: ")
                             }
 
-                            withStyle(style = SpanStyle(color = Color.Yellow,
+                            withStyle(style = SpanStyle(color = Color.Green,
                                 fontSize = 13.sp,
                             fontWeight = FontWeight.Bold)) {
                                 append(movie.plot)
                             }
-                        })
+                        }, modifier = Modifier.padding(6.dp))
+                        
+                        Divider(modifier = Modifier.padding(4.dp))
+                        
+                        Text(
+                            text = "Director: ${movie.director}",
+                            style = MaterialTheme.typography.caption
+                        )
+                        Text(
+                            text = "Actors: ${movie.actors}",
+                            style = MaterialTheme.typography.caption
+                        )
+                        Text(
+                            text = "Rating: ${movie.rating}",
+                            style = MaterialTheme.typography.caption
+                        )
                     }
                 }
 
