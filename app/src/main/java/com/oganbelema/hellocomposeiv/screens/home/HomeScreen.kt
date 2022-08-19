@@ -1,22 +1,19 @@
 package com.oganbelema.hellocomposeiv.screens.home
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.oganbelema.hellocomposeiv.AppTopBar
+import com.oganbelema.hellocomposeiv.model.Movie
+import com.oganbelema.hellocomposeiv.model.getMovies
 import com.oganbelema.hellocomposeiv.navigation.MovieScreens
+import com.oganbelema.hellocomposeiv.widgets.MovieRow
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -32,9 +29,7 @@ fun HomeScreen(navController: NavController) {
 @Composable
 fun MainContent(
     navController: NavController,
-    movies: List<String> = listOf(
-    "Avatar", "300", "Harry Potter", "Life"
-)) {
+    movies: List<Movie> = getMovies(LocalContext.current)) {
     Column(modifier = Modifier.padding(12.dp)) {
         LazyColumn {
             items(items = movies) {
@@ -42,32 +37,6 @@ fun MainContent(
                     navController.navigate(MovieScreens.DetailsScreen.name+"/$movie")
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun MovieRow(movie: String, onItemClick: (String) -> Unit) {
-    Card(modifier = Modifier
-        .padding(4.dp)
-        .fillMaxWidth()
-        .height(120.dp)
-        .clickable {
-            onItemClick(movie)
-        },
-        shape = RoundedCornerShape(corner = CornerSize(12.dp)),
-        elevation = 6.dp) {
-        Row(verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Start) {
-            Surface(modifier = Modifier
-                .padding(12.dp)
-                .size(100.dp),
-                shape = RectangleShape,
-                elevation = 4.dp) {
-                Icon(imageVector = Icons.Default.AccountBox,
-                    contentDescription = "Movie Image")
-            }
-            Text(text = movie)
         }
     }
 }
