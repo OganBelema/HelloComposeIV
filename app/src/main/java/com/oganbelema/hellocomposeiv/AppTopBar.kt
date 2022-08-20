@@ -31,7 +31,7 @@ fun AppTopBar(title: String, isChild: Boolean = false,
                     navController?.popBackStack()
                 })
 
-                Spacer(modifier = Modifier.width(100.dp))
+                Spacer(modifier = Modifier.width(20.dp))
             }
 
             Text(text = title)
