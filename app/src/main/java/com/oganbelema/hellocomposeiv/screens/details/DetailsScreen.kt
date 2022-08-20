@@ -8,13 +8,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.oganbelema.hellocomposeiv.AppTopBar
-import com.oganbelema.hellocomposeiv.model.getMovies
+import com.oganbelema.hellocomposeiv.data.MovieDataSource
 import com.oganbelema.hellocomposeiv.widgets.MovieRow
 
 @Composable
 fun DetailsScreen(navController: NavController, movieId: String?) {
 
-    val movieData = getMovies(LocalContext.current).filter {it.id == movieId}[0]
+    val movieData = MovieDataSource().getMovies(LocalContext.current).filter {it.id == movieId}[0]
 
     if (movieId != null) {
         Scaffold(topBar = {

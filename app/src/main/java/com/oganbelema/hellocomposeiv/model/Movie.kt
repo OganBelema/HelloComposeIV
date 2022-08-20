@@ -17,17 +17,3 @@ data class Movie(
     @SerializedName("Poster") val poster: String,
     @SerializedName("imdbRating") val rating: String
 )
-
-fun getMovies(context: Context): List<Movie> {
-    lateinit var jsonString: String
-    try {
-        jsonString = context.assets.open("movies.json")
-            .bufferedReader()
-            .use { it.readText() }
-    } catch (ioException: IOException) {
-        ioException.printStackTrace()
-    }
-
-    val listCountryType = object : TypeToken<List<Movie>>() {}.type
-    return Gson().fromJson(jsonString, listCountryType)
-}

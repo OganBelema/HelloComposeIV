@@ -29,12 +29,12 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.oganbelema.hellocomposeiv.R
+import com.oganbelema.hellocomposeiv.data.MovieDataSource
 import com.oganbelema.hellocomposeiv.model.Movie
-import com.oganbelema.hellocomposeiv.model.getMovies
 
 @Preview
 @Composable
-fun MovieRow(movie: Movie = getMovies(LocalContext.current)[0],
+fun MovieRow(movie: Movie = MovieDataSource().getMovies(LocalContext.current)[0],
              onItemClick: (String) -> Unit = {}) {
     val expanded = remember {
         mutableStateOf(false)

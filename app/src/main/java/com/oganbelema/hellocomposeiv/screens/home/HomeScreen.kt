@@ -10,8 +10,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.oganbelema.hellocomposeiv.AppTopBar
+import com.oganbelema.hellocomposeiv.data.MovieDataSource
 import com.oganbelema.hellocomposeiv.model.Movie
-import com.oganbelema.hellocomposeiv.model.getMovies
 import com.oganbelema.hellocomposeiv.navigation.MovieScreens
 import com.oganbelema.hellocomposeiv.widgets.MovieRow
 
@@ -29,7 +29,7 @@ fun HomeScreen(navController: NavController) {
 @Composable
 fun MainContent(
     navController: NavController,
-    movies: List<Movie> = getMovies(LocalContext.current)) {
+    movies: List<Movie> = MovieDataSource().getMovies(LocalContext.current)) {
     Column(modifier = Modifier.padding(12.dp)) {
         LazyColumn {
             items(items = movies) {
